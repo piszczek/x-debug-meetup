@@ -1,0 +1,17 @@
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+            depends: PhpBrowser
+            url: ''
+        - PhpBrowser:
+              url: %TEST_URL_DOMAIN_SYMFONY%
+              # enable xdebugging test requests
+              headers:
+                  X-Xdebug-Remote-Address: %XDEBUG_REMOTE_HOST%
+                  X-PHP_IDE_CONFIG: serverName=meetup.php
+              cookies:
+                  XDEBUG_SESSION:
+                      Name: XDEBUG_SESSION
+                      Value: PHPSTORM
+        - \App\Tests\Helper\Api
