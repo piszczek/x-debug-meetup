@@ -3,7 +3,7 @@ index:
     controller: App\Controller\DefaultController::index
 
 books:
-    path: /books
+    path: /books-list
     controller: App\Controller\DefaultController::books
 
 books_generate:

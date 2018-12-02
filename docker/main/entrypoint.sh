@@ -23,7 +23,7 @@ then
     # file has only this line
     echo export XDEBUG_CONFIG="remote_host=$HOST_IP" > $HOME_DIR/.bashrc
     echo export XDEBUG_REMOTE_HOST="$HOST_IP" >> $HOME_DIR/.bashrc
-    echo export PHP_IDE_CONFIG="serverName=$HTTP_DOMAIN" >> $HOME_DIR/.bashrc
+    echo export PHP_IDE_CONFIG="serverName=meetup.php" >> $HOME_DIR/.bashrc
 
     echo 'export PS1="[\$(test -e /usr/local/etc/php/conf.d/xdebug.off && echo XOFF || echo XON)] $HC$FYEL[ $FBLE${debian_chroot:+($debian_chroot)}\u$FYEL: $FBLE\w $FYEL]\\$ $RS"' >> $HOME_DIR/.bashrc
     # ADD ALIASES

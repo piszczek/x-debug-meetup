@@ -1,18 +1,5 @@
 <?php
 
-class Test {
-    public function test() {
-        $test = 1;
-
-
-        return "aa";
-    }
-}
-
-$x = new Test();
-$x->test();
-
-
 $variable = new \stdClass();
 $variable->test = 'test';
 $variable->array = [
