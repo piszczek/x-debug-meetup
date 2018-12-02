@@ -9,7 +9,6 @@ modules:
               # enable xdebugging test requests
               headers:
                   X-Xdebug-Remote-Address: %XDEBUG_REMOTE_HOST%
-                  X-PHP_IDE_CONFIG: serverName=meetup.php
               cookies:
                   XDEBUG_SESSION:
                       Name: XDEBUG_SESSION
