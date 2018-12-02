@@ -1,0 +1,66 @@
+version: '3'
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  meetup-mysql:
+
+services:
+  # INFRASTRUCTURE SERVICES
+  meetup_http:
+    container_name: meetup_http
+    build: docker/http
+    networks:
+      default:
+        aliases:
+          - ${HTTP_DOMAIN_SYMFONY}
+          - ${HTTP_DOMAIN_PURE}
+    # add env variables do vhost conf files
+    environment:
+      - HTTP_DOMAIN_SYMFONY=${HTTP_DOMAIN_SYMFONY}
+      - HTTP_DOMAIN_PURE=${HTTP_DOMAIN_PURE}
+    command: sh /bin/run-nginx.sh
+    depends_on:
+      - php_service
+    ports:
+      - 80:80
+      - 443:443
+    expose:
+      - 80
+      - 443
+    volumes:
+      - ./:/opt/meetup:cached
+    working_dir: /etc/nginx
+    tty: true
+
+  # DOMAIN SERVICES
+  php_service:
+    container_name: php_service
+    build: docker/main
+    networks:
+      - default
+    environment:
+      - USER_ID=${USER_ID}
+    volumes:
+      - ./:/opt/meetup:cached
+    expose:
+      - 9000
+    working_dir: /opt/meetup
+    tty: true
+    depends_on:
+    - meetup_mysql
+
+  meetup_mysql:
+    container_name: meetup_mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: meetup
+
+    ports:
+    - 3306:3306
+    volumes:
+    - meetup-mysql:/var/lib/mysql
+    tty: true
