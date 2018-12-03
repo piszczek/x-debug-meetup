@@ -1,4 +1,4 @@
-FROM piszczek/php:latest
+FROM dzordz/docker-php:latest
 
 # CLEAN APT AND TMP
 RUN apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
