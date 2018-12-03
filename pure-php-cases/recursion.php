@@ -26,4 +26,4 @@ $output = curl_exec($ch);
 curl_close($ch);
 
 
-echo "Response" . $output;
+echo "Response : <b>{$output}</b>";

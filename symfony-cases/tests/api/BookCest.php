@@ -15,6 +15,8 @@ class BookCest
             ]
         );
 
+        $response = $I->grabResponse();
+
         $I->seeResponseContains("Book index");
         $I->seeResponseCodeIs(\Codeception\Util\HttpCode::OK);
     }
