@@ -20,6 +20,18 @@ class BookController extends AbstractController
      */
     public function index(BookRepository $bookRepository): Response
     {
+        $books = $bookRepository->findAll();
+        foreach ($books as $book) {
+            //dummy load again for tests
+            $bookRepository
+                ->createQueryBuilder('b')
+                ->where('b.id = :id')
+                ->setParameter('id', $book->getId())
+                ->getQuery()
+                ->execute()
+            ;
+        }
+
         return $this->render('book/index.html.twig', ['books' => $bookRepository->findAll()]);
     }
 
